@@ -1,0 +1,20 @@
+#!/bin/bash
+#Diamond
+echo
+for n in `seq $1`;do                    # beginning of a cycle for growing upper half of diamond
+        (( a = $n * 2 ))                                # variables derived from $1 for SI working right
+        (( b = $1 * 2 + 1 ))
+        printf "%0.s-" `seq $a 1 $b` | tr - " "         # symmetric indetation (SI)
+        (( m = $n - 1 ))                                # avoiding doubled middle column
+        echo `seq $n` `seq $m -1 1`                     # code for increasing and decreasing numerical row
+done
+
+(( q = $1 - 1 ))                                        # avoiding doubled middle row
+for p in `seq $q -1 1`;do               # beginning of a cycle for lower half of diamond getting shorter
+        (( c = $p * 2 ))                                # variables derived from $1 for SI working right
+        (( d = $1 * 2 + 1 ))
+        printf "%0.s-" `seq $c 1 $d` | tr - " "         # symmetric indetation (SI)
+        (( r = $p - 1 ))                                # avoiding doubled middle column
+        echo `seq $p` `seq $r -1 1`                     # code for increasing and decreasing numerical row
+done
+echo
